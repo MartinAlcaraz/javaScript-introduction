@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>CSS 26 - Media Queries</title>
+<!-- link bootstrap  
+  <link  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		-->
+  <!-- link Google Icons  
+  <link  href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">                                                               
+	-->
+  <meta charset="utf-8">  
+  <meta name="viewport" content="width= device-width, initial-scale= 1">
+  
+  <!-- fuentes de google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&family=Playfair+Display&family=Raleway&display=swap" rel="stylesheet">
+  
+  
+  
+  <meta http-equiv="refresh" content="600">      <!-- Refresh the web page every 60 seconds -->
+  
+  <meta name="keywords" content="HTML, CSS, Style"><!-- Define keywords for search engines -->
+  
+  <meta name="description" content="User interface, resizing and outline-offset ">   <!-- Define a description of your web page -->
+  
+  <meta name="author" content="A. Martin Alcaraz">      <!-- Define the author of a page -->
+  
+  <!--
+  <link rel="stylesheet" href="style.css" >
+	-->
+    <!-------------------------  icono --------------------->
+    <link rel="apple-touch-icon" sizes="57x57" href="icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16x16.png">
+  <link rel="manifest" href="icons/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="icons/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  
+  <!-------------------------  icono --------------------->
+
+    
+	
+<style> 
+	h1, h2, h3 {font-family: 'Playfair Display', serif; text-shadow: 1px 1px #ddd;}
+	h1{text-align:center; font-size:50px; text-shadow: 3px 3px #ddd;}
+	h2 {text-align:left; font-size:3.5vw; text-decoration:underline; }
+    h3, h4{text-decoration:underline;}
+	p{font-family:'Raleway', sans-serif;  font-size:1em; text-indent:5px; line-height:25px; font-weight:500;}
+	
+	* {   box-sizing:border-box;  }
+	
+	:root { --fondo1: #333; 
+	        --fondo2: #777;
+            --color-pagina1:#5F9EA0 ; 
+			--color-pagina2:#7FFF00 ;		}
+			
+			
+
+	
+	* {   box-sizing:border-box;  }
+    body {   font-family: Arial;    padding:10px;    
+              			 
+              background-color: #003366; /* For browsers that do not support gradients */
+          background-image: linear-gradient(to bottom right, var(--fondo1), var(--fondo2));  
+          outline: 10px solid red;		  }
+	
+		/* Header/Blog Title */
+    .header {   padding:30px;   text-align: center;   border-radius: 30px 30px 0 0; 
+	 background-image: linear-gradient(to bottom right, var(--color-pagina1), var(--color-pagina2));}
+  		
+	
+	
+  .header h1 { font-size:70px;  }
+	
+		   
+		   
+		   /* ---------------- Style the top navigation bar --------------- */
+		   
+  				 
+  .topnav { list-style-type:none; margin:0; padding:0; overflow:hidden; background-color:#111; top:10px;}
+
+  .topnav li { float:left; text-align:center; }
+
+  .topnav li a,.topnav a.dropbtn {  display:inline-block;  color:white;  text-align:center;
+                    padding:14px 16px;   text-decoration:none;  }
+
+  .topnav li a:hover,.topnav li.dropdown:hover a.dropbtn {  background-color:red;  }
+
+  .topnav li.dropdown {  display:inline-block;  }
+  
+  .topnav li a {min-width:200px;}
+  
+  div.dropdown-content { display:none;  position:absolute;  background-color:#111;
+                         min-width:110px; z-index:1; 
+						 box-shadow:0px 8px 16px 0px rgba(0,0,0,0.2);
+						                           }
+
+  div.dropdown-content a { color:black;  padding:10px 16px; text-decoration:none;
+                        display:block;   text-align:left; color:white; min-width:200px;}
+
+  div.dropdown-content a:hover {background-color:red; }
+  
+  li.dropdown:hover div.dropdown-content { display:block; }
+  
+  #arrow{font-size:10px;}
+  
+    
+  
+  
+		
+		
+	  /* -------Create two unequal columns that floats next to each other ----------- */
+		
+		/* Left column */
+  .leftcolumn {   float:left;   width:75%; }
+			/* Right column */
+  .rightcolumn {   float:left;   width:25%;  padding-left:10px; 
+                   
+				   background-color:rgba(0,0,0,0);    			   }
+
+			/* Fake image */
+  div.img01 {     width:100%;   padding:10px; }
+  div.img01 img{width:100%;}
+  
+	
+			             /* Add a card effect for articles */
+  .card {  background-color: var(--color-pagina1); /* For browsers that do not support gradients */
+    
+	background-image: linear-gradient(to bottom right, var(--color-pagina1), var(--color-pagina2)); 
+	padding: 20px;   margin-top: 20px; border-radius: 30px; }
+	
+		
+		/* Clear floats after the columns */
+  .row:after {  content: "";   display: table;   clear: both; }
+		
+                 		
+						/* ------ Footer ------- */
+						
+  .footer {   padding: 20px;   text-align:left;   background: #ddd;   margin-top: 20px;   
+            border-radius: 30px;
+            background-color: var(--color-pagina1); /* For browsers that do not support gradients */
+            
+			background-image: linear-gradient(to bottom right, var(--color-pagina1), var(--color-pagina2));   position:relative;     }
+  
+  .footer h4{text-decoration:none; text-shadow: 1px 1px #eee;}		
+  
+   div.sticky{ height:1000px; }
+   
+   #logo-m { position:absolute; right:7%; top:17%; }
+			
+  
+  
+  
+  
+  .ul-class1 li {list-style-type:square; font-size:20px;  margin:5px 0; 
+       box-shadow: 0 9px 9px 0 rgba(0,0,0,0.4); width:50%; padding: 3px 0px;}
+	   
+  .ol-class1 li { font-size:16px;  margin:10px 0; padding: 3px 0px;
+       box-shadow: 0 9px 9px 0 rgba(0,0,0,0.4);}	   
+
+  p.codigo{ font-family: 'Cutive Mono', monospace; font-size:16px;  
+            background-color: var(--color-pagina1); /* For browsers that do not support gradients */
+            background-image: linear-gradient(to bottom left, var(--color-pagina2), var(--color-pagina1));
+            border-radius:30px;  padding:5px 5px;  border: 1px solid #555; 
+            }
+  
+ 
+   div.card02 {   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+               text-align: center;  width: 250px;   margin:0% 30%;     }
+			   
+   div.header02 {   background-color: #4CAF50;   color: white;   padding:10px;   font-size: 40px; }
+   
+   div.header02 h1{ text-shadow: none; }
+   
+   div.container02 {   padding:10px;  }
+   
+   div.polaroid {   width: 350px; text-align: center;  
+                  box-shadow: 0 9px 18px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);     } 
+   div.container {   padding: 10px;  }
+  
+   mark{text-decoration:underline; background:none; font-weight:bold; }
+   
+   #menu-sticky01{ position:-webkit-sticky; /* necesario para explorador Safari */
+			   position:sticky; top:0; }
+			   
+   #menu-sticky02{ position:-webkit-sticky; /* necesario para explorador Safari */
+			   position:sticky; top:0; }	
+
+     
+
+	 /* ---------------   table design   ---------------------*/			   
+  
+   #tabla table, td, th{  border:1px solid #ddd; padding:5px 10px; } 
+   
+   #tabla { border-collapse:collapse;   width:100%; }
+   
+   #tabla td{padding:10px 10px;}
+   
+   #tabla caption{ font-weight:bold;  padding:10px 0px; text-decoration:underline;  }
+   
+   #tabla tr:nth-child(even){
+               background-color: red; /* For browsers that do not support gradients */
+               background-image: repeating-linear-gradient(to left, var(--fondo1), var(--color-pagina1) );  }
+   
+   #tabla th {background-color: #660066; /* For browsers that do not support gradients */
+              background-image: repeating-linear-gradient(to left, var(--fondo1), var(--color-pagina1) ); }
+
+   #tabla tr:hover {background-color: #fff; opacity:0.6;}   
+   
+   #tabla {box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.19);}
+   
+   #tabla td{text-align:center;}
+  
+	  /* ------------- column right ---------------*/
+	  
+	.col a{display:block; text-decoration:none; text-align:center; font-size:20px; }  
+    
+	 /* -------------- spined button of right column ----------------*/
+  
+  .container-03 {position:relative; width:100%;  }
+  .btn-10 { background-color: #008CBA; border:1px solid black; color:white;    
+           font-size:18px; padding: 20px 40px; position:absolute; height:60px;
+		   box-shadow: 0 16px 16px 0 rgba(0,0,0,0.54); 
+		   left: 10%;
+		   
+		   
+		   animation-name: example-01;
+		   animation-duration: 5s;
+           animation-iteration-count: infinite;
+		   animation-timing-function: linear;
+		   
+		   }
+  
+  @keyframes example-01 { from { transform: rotateY(0deg);}
+                        to { transform: rotateY(360deg);} }
+  
+  .container-03 button:hover { cursor: pointer;}
+  
+                  /* ---------- image reflection -------------*/
+				  
+  #img-reflection{max-width:50%; -webkit-box-reflect: right;}
+  
+            
+			/* -------------- pagination ----------------*/
+			
+  .pagination-05 {   display: inline-block; margin:15%; }
+  .pagination-05 a {   color: black;  float: left;   background-color:#fff; padding: 4px 8px;
+    font-size:14px; text-decoration: none; transition: background-color .3s; border: 1px solid #ddd;
+	 width:20%; }
+    
+  .pagination-05 a.active-05 {  background-color: #4CAF50;  color: white;  
+	                            border: 1px solid  #4CAF50; }
+  .pagination-05 a:hover:not(.active-05) {background-color: #ddd;}
+
+                   /*    Add rounded borders to your first and last link in the pagination:   */
+  .pagination-05 a:first-child {   border-top-left-radius: 5px;  border-bottom-left-radius: 5px; }
+  .pagination-05 a:last-child {   border-top-right-radius: 5px;  border-bottom-right-radius: 5px;  }
+  
+         /* ----------------- button sticky go top --------------------- */
+						   
+  #sticky-go-top {width:50px; height:50px; right:10px; bottom:10px; 
+                  opacity: 0.5; background-color:black; position:fixed; 
+                  text-align:center;  line-height:20px; z-index:1;} 
+  
+  #sticky-go-top a {text-decoration:none; color:white;   }
+  
+  #sticky-go-top::after{ content:""; position:absolute; bottom:100%; left:50%;
+                         margin-left: -25px;
+                         border-style:solid; border-width:25px; 
+						 border-color: transparent transparent black transparent; }
+  
+  #sticky-go-top:hover {opacity:1; cursor:hand;}
+  
+  div.codigo {border: 2px solid black; border-radius:20px; 
+        padding:20px 10px;
+		background-color: --color-pagina1; /* For browsers that do not support gradients */
+        background-image: repeating-linear-gradient(to left, var(--color-pagina2), var(--color-pagina1) ); }
+  
+
+/* ------------------------------- end of basic page ---------------------------------------*/
+
+                        
+					              
+			  /* -----hide elements with media queries ----------- */  
+  
+  div.example {   background-color: yellow;   padding: 20px; }
+  
+  @media screen and (max-width: 700px) {
+      div.example {     display: none;   }
+   } 
+   
+     
+    /* --------------------  orientation : landscape ----------------*/
+
+   #body-example {   background-color: lightgreen; height:400px; width:auto; }
+   @media only screen and (orientation: landscape) {
+          #body-example {    background-color: lightblue;   }
+     }
+
+   
+
+   /* --------------------- Min Width to Max Width ------------------------ */
+    
+	.example-02 { border: 2px solid black; padding: 15px; text-align:center;}
+	
+	@media screen and (max-width: 900px) and (min-width: 600px) {
+       
+	   .example-02 {  font-size: 50px;  padding: 50px; border: 8px solid black; background: yellow; }
+    }   
+   
+   
+    /* --------------------------- OR operator -------------------------------- */
+	
+    .example-03 { border: 2px solid black; padding: 15px; text-align:center;}
+
+	@media screen and (max-width: 800px) and (min-width: 600px), (min-width: 1000px) {
+	
+    .example-03 { font-size: 50px; padding: 50px; border: 8px solid black; background: yellow;   }
+
+    }
+	
+	code { font-size:15px; }
+
+
+
+	   /* ---------------------------------------------------------------------------*/
+
+  
+  /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+  
+  @media screen and (max-width:800px) { 
+       .leftcolumn, .rightcolumn {  width: 100%;  padding: 0; } 
+       div.sticky{ height:auto; } 
+	   
+	   .pagination-05 a {  padding: 8px 16px;  font-size:16px; width:20%; }
+	   .pagination-05 {    margin:0px 30%; }
+   }
+  
+	
+	/* Responsive layout - when the screen is less than 600px wide, make the 		navigation links stack on top of each other instead of next to each other */
+  
+    @media screen and (max-width: 600px) { 
+        .topnav a {   float:none;   width:100%; } 
+         div.sticky { height:auto; } 
+        
+		.pagination-05 a {  padding: 8px 16px;  font-size:16px; width:20%; }
+	    .pagination-05 {    margin:0px 27%; }
+  
+    }
+	
+  </style>
+</head>
+<body id="top">
+  <div class="header">
+    <h1>JS Introduction</h1>
+    <p>Resize the browser window to see the responsive effect.</p>
+  </div>
+  
+  <!-- ---------------------button go top ----------- -->
+  <div id="sticky-go-top"><a href="#top">Go Top</a> </div>
+
+  
+  <!------------------menu principal ------------------>
+  <ul class="topnav">
+     
+    <li class="dropdown">
+	  <a href="#resize" class="dropbtn">JavaScript <span id="arrow">&nbsp; &nbsp; &#9947;</span></a>
+         <div class="dropdown-content" >
+           <a href="#innerHTML">innerHTML</a>
+		   <a href="#">And so on.</a>
+         </div>
+    </li>
+	<li class="dropdown">
+	  <a href="#display-possibilities" class="dropbtn">JS Display Possibilities<span id="arrow">&nbsp; &nbsp; &#9947;</span></a>
+      <div class="dropdown-content" >
+           
+        <a href="#using-innerhtml">Using innerHTML</a> 
+        <a href="#using-document-write">Using document.write</a>
+		<a href="#using-window-alert">Using window.alert</a>
+        <a href="#using-console-log">Using console.log</a>	
+        <a href="#js-print">JavaScript Print</a>		
+      </div>
+    </li>
+	<li class="dropdown"><a href="#flexible-website">Flexible Website</a>		 
+	<li class="dropdown"><a href="#diferent-stylesheet">Different Stylesheet for diferent media</a>			
+  </ul>
+    
+  <div class="row">
+  
+      <!---------------------------    Left column     --------------------------->
+  
+    <div class="leftcolumn">
+      <div class="card" id="innerHTML">
+        <h1>JS introduction</h1>
+		<h5>November 11, 2021</h5>
+		
+		<h2>What Can JavaScript Do?</h2>
+        <p id="demo">JavaScript can change HTML content with <b>innerHTML</b> attribute.</p>
+        <button type="button" onclick='document.getElementById("demo").innerHTML = "Hello JavaScript!" '>Click Me!</button>
+
+		
+		<br>
+        <br>
+	  </div>
+	  <div class="card">
+        <br id="change-attribute-values">
+		<h3>JavaScript Can Change HTML Attribute Values</h3>
+		<h5>November 11, 2021</h5>
+		
+		<p>In this example JavaScript changes the value of the <b>src</b> (source) attribute of an &lt;img> tag:
+        </p>
+		
+		<button onclick="document.getElementById('myImage').src='../images/pic_bulbon.gif'">Turn on the light</button>
+        <img id="myImage" src="../images/pic_bulboff.gif" style="width:100px"> 
+        <button onclick="document.getElementById('myImage').src='../images/pic_bulboff.gif'">Turn off the light</button>
+		
+		<br>
+		<h3>JavaScript Can Change HTML Styles (CSS)</h3>
+		<p id="demo-01">Changing the style of an HTML element, is a variant of changing an HTML attribute:</p>
+		
+		<button type="button" onclick="document.getElementById('demo-01').style.fontSize='30px'">Click Me!</button>
+		<br>
+		
+		<h3>JavaScript Can Hide HTML Elements</h3>
+		<p id="demo-02">JavaScript can hide HTML elements.</p>
+
+        <button type="button" onclick="document.getElementById('demo-02').style.display='none'">Click Me!</button>
+		
+		<br><br>
+	    <h3>JavaScript can show hidden HTML elements.</h3>
+
+        <p id="demo-03" style="display:none">Style display:none;</p>
+
+        <button type="button" onclick="document.getElementById('demo-03').style.display='block'">Click Me!</button>
+		
+		<br><br>
+		 <h3>JavaScript can show hidden HTML elements.</h3>
+
+        <p id="demo-04" style="visibility:hidden">Style visibility: hidden;</p>
+
+        <button type="button" onclick="document.getElementById('demo-04').style.visibility='visible'">Click Me!</button>
+	  
+	  <br>
+	  <br>
+	  
+	  </div>
+	  <br id="display-possibilities"> 
+	  <div class="card">
+        <h2>JavaScript Display Possibilities</h2>
+		<p>JavaScript can "display" data in different ways:</p>
+		<ul>
+		  <li>Writing into an HTML element, using innerHTML.</li>
+		  <li>Writing into the HTML output using document.write() .</li>
+		  <li>Writing into an alert box, using window.alert() .</li>
+		  <li>Writing into the browser console, using console.log().</li>
+		</ul>
+        
+		<br id="using-innerhtml">
+        <h3>Using innerHTML</h3>  
+        <p>To access an HTML element, <b>JavaScript</b> can use the <b>document.getElementById(id)</b> method.
+          The id attribute defines the HTML element. The innerHTML property defines the HTML content:
+        </p>
+		<p id="demo-05"></p>
+        <script>
+          document.getElementById("demo-05").innerHTML = 5 + 6;
+        </script>
+        <div class="codigo">
+		<code>
+		  &lt;script> <br>
+          &nbsp; document.getElementById("demo-05").innerHTML = 5 + 6; <br>
+          &lt;/script>
+		</code>  
+		</div>
+		<br>
+        <br id="using-document-write">
+        <h3>Using document.write()</h3>		
+		<p>For testing purposes, it is convenient to use <b>document.write()</b>:</p>
+		
+        <p>My first paragraph.</p>
+        <script>
+          document.write(5 + 6);
+        </script>
+		<code>
+		 <div class="codigo">
+		  &lt;script> <br>
+          &nbsp; document.write( 5 + 6 ); <br>
+          &lt;/script>
+		</code>
+		</div>
+        <br>
+		<br>
+		
+		<h3>Note:</h3>
+		<p>Using <b>document.write()</b> after an HTML document is loaded, will delete all existing HTML: <br>
+           Example:</p>
+		<p>My first paragraph.</p>
+
+        <button type="button" onclick="document.write(5 + 6)">Try it</button>
+
+	    <br><br id="using-window-alert">
+		<h3>Using window.alert()</h3>
+        <p>You can use an alert box to display data:</p>
+
+		<p>My first paragraph.</p>
+        <script>
+           window.alert("It is a window alert example.");
+        </script>
+        <div class="codigo">
+		<code>
+		  &lt;script> <br>
+          &nbsp; window.alert("It is a window alert example."); <br>
+          &lt;/script>
+		</code>  
+		</div>
+		<br>
+		<br>
+		<h3>You can skip the <i>window</i> keyword</h3>
+		<p>In JavaScript, the <b>window object</b> is the global scope object, that means that variables, properties, and methods by default belong to the window object. This also means that specifying the <b>window</b> keyword is optional:
+        </p>
+		
+		<div class="codigo">
+		<code>
+		  &lt;script> <br>
+          &nbsp; alert("It is a window alert example."); <br>
+          &lt;/script>
+		</code>  
+		</div>
+		
+		<br><br id="using-console-log">
+		
+		<h3>Using console.log()</h3>
+		<p>For debugging purposes, you can call the <b>console.log()</b> method in the browser to display data.</p>
+		<p>Activate Debugging</p>
+        <p>F12 on your keybord will activate debugging.</p>
+        <p>Then select "Console" in the debugger menu.</p>
+        <p>Then click Run again,  and see the sum result in the console.</p>
+		<script>
+          console.log(5 + 6);
+        </script>
+		<div class="codigo"> 
+		<code>
+        &lt;script> <br>
+          &nbsp; console.log(5 + 6); <br>
+        &lt;/script> 
+        </code>
+		</div>
+		
+		<br>
+		<br id="js-print">
+		
+		<h3>JavaScript Print</h3>
+		<p><b>JavaScript</b> does not have any print object or print methods. <br>
+           You cannot access output devices from JavaScript. <br>
+           The only exception is that you can call the <b>window.print()</b> method in the browser to print the content of the current window. </p>
+        
+		<div class="codigo"><code>
+		  &lt;button onclick=<i>"window.print()"</i>> Print this page &lt;/button>
+		</code></div>
+		
+		<h4>The window.print() Method</h4>
+        <p>Click the button to print the current page.</p>
+        <button onclick="window.print()">Print this page</button>
+        
+		
+		
+		
+		
+		
+		
+	
+	
+	
+	</div> <!-- end of card ----->
+	
+	<br id="diferent-stylesheet">
+	<div class="card">
+	  <h2>Different Stylesheet for diferent media</h2>
+	  <br>
+	  <p class="codigo"><code class="code">
+	  <br>
+	    &lt;link rel="stylesheet" media="screen and (min-width: 900px)" href="widescreen.css"&gt;<br>
+        &lt;link rel="stylesheet" media="screen and (max-width: 600px)" href="smallscreen.css"&gt;
+      <br>
+	  <br>
+	  </code>
+	  </p>
+	
+  
+    </div>
+  </div> 
+    
+	<!---------------  the end of left column   ---------------->
+	
+	    
+	<!----------------    Right column     ----------------->
+	
+    <div class="rightcolumn">
+      <div class="card">
+		<h2>Css User Interface</h2>
+		<div class="col"> 
+		 <a href="#resize">Resize</a>
+         <a href="#horizontal">Horizontal</a>
+         <a href="#vertical">Vertical</a> 
+         <a href="#both">Both</a>
+         <a href="#none">None</a>
+         <br>		 
+         <a href="#outline-offset">Outline-offset</a>
+		 <br>
+	     <a href="#user-select">User-select</a>
+		</div>
+      </div>
+	  <div class="sticky">
+        <div class="card" id="menu-sticky01">	    
+          <h2>Popular Post</h2>
+		  <h3>Css Buttons</h3>
+		  <br>
+          <a href="#CSS 21 - Buttons.html" target="_blank" id="enlace-01">
+			<div class="container-03"> 
+			  <button class="btn-10">Buttons</button> 
+			</div>
+		  </a>
+		  <br><br>
+		  <br><br>
+		  <br><br>
+	      <h3>Image Reflection</h3>
+          <div>
+		    <a href="CSS 20 - Image Reflection.html" target="_black">
+		       <img id="img-reflection" src="../images/img_tree.gif" title="lechuza" alt="lechuza">
+			</a>
+	      </div>
+		  <br>
+		  <h3>Css Pagination</h3>
+		  <br>
+		  <div class="pagination-05">
+            <a href="CSS 21 - Pagination.html" target="_blank">&laquo; </a>
+            <a href="CSS 21 - Pagination.html" target="_blank">1</a>
+            <a href="CSS 21 - Pagination.html" target="_blank" class="active-05">2</a>
+            <a href="CSS 21 - Pagination.html" target="_blank">3</a>
+            <a href="CSS 21 - Pagination.html" target="_blank">&raquo; </a>
+        </div>
+		</div>
+	  </div>
+	  <div class="sticky">
+        <div class="card" id="menu-sticky02">
+          <h3>Follow Me</h3>
+          <p>Visit my website</p>
+		  <a href="MyWebSite.html" target="_blank"> <img src="../iconos/icono-M.png" width="100%"> </a>
+        </div>
+	  </div>
+    </div>
+  </div>
+<div class="footer" id="footer">
+    <a href="MyWebSite.html" target="_blank" id="logo-m"> <img src="../iconos/icono-M.png" 
+	 width="120px" title="logo" alt="logo-m"> </a>
+	<h4>Web site by Martincho_cqc</h4>
+	<p>Setpember 19, 2021</p>
+	<p>All rights reserved.</p>
+</div>
+
+
+
+</body>
+</html>
